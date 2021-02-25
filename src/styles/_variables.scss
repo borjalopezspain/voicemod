@@ -1,22 +1,18 @@
-$mountain-meadow: #1eb98a;
-$green-yellow: #bcf236;
-$concrete: #f2f2f2;
-$dove-gray: #616161;
-$boulder: #777;
-$emperor: #515151;
-$nobel: #b7b7b7;
-$alabaster: #fcfcfc;
-$white: #fff;
-$silver: #ccc;
-$tom-thumb: #2a492f;
-$red: #c6868a;
-$header: 80px;
-$footer: 30px;
+:root {
+  --primary: #1b1b1b;
+  --secondary: #000000;
+  --text: #d2d2d2;
+  --white: #fff;
 
-/* Responsive */
-$mobile: "only screen and (max-width: 480px)";
-$tablet: "only screen and (max-width: 768px)";
-$tablet-landscape: "only screen and (max-width: 1024px)";
-$desktop-regular: "only screen and (max-width: 1440px)";
-$desktop-big: "only screen and (min-width: 1200px)";
-$ie: "all and (-ms-high-contrast: none), (-ms-high-contrast: active)";
+  --max-width-layout: 1024px;
+  --header-height: 50px;
+  --footer-height: 50px;
+
+  /* Responsive */
+  --mobile: "only screen and (max-width: 480px)";
+  --tablet: "only screen and (max-width: 768px)";
+  --tablet-landscape: "only screen and (max-width: 1024px)";
+  --desktop-regular: "only screen and (max-width: 1440px)";
+  --desktop-big: "only screen and (min-width: 1200px)";
+  --ie: "all and (-ms-high-contrast: none), (-ms-high-contrast: active)";
+}
