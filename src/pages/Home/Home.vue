@@ -20,7 +20,7 @@
     <div class="voices-container">
       <div
         class="voices-container__voice"
-        v-for="voice in voicesData"
+        v-for="voice in filteredVoicesData"
         :key="voice.id"
       >
         <voice-item />
@@ -48,21 +48,21 @@ export default class Home extends Vue {
   @Action
   private getFavouriteVoicesList!: () => Promise<IVoiceItem[]>;
 
-  @State((state) => state.Voices.voicesList) voicesList!: IVoiceItem[];
-
   @State((state) => state.Voices.favouriteVoicesList)
   favouriteVoicesList!: IVoiceItem[];
+
+  @State((state) => state.Voices.filteredVoicesList)
+  filteredVoicesList!: IVoiceItem[];
 
   // DATA
   voicesData: IVoiceItem[] = [];
   favouriteVoicesData: IVoiceItem[] = [];
+  filteredVoicesData: IVoiceItem[] = [];
 
   // METHODS
   async callGetVoicesList(): Promise<void> {
     const res = await this.getVoicesList();
-    if (res) {
-      this.voicesData = res;
-    }
+    this.voicesData = this.filteredVoicesList;
   }
   async callGetFavouriteVoicesList(): Promise<void> {
     const res = await this.getFavouriteVoicesList();
