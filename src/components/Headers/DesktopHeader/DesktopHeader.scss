@@ -1,0 +1,8 @@
+.desktop-header {
+  display: flex;
+  color: var(--text);
+  justify-content: space-between;
+  &__filters {
+    display: flex;
+  }
+}
