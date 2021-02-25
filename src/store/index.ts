@@ -1,16 +1,16 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import test from "@/store/modules/test";
+import voices from "@/store/modules/Voices";
 
 export interface StateInterface {
-  test: unknown;
+  voices: unknown;
 }
 
 Vue.use(Vuex);
 
 export default new Vuex.Store<StateInterface>({
   modules: {
-    test,
+    voices,
   },
 });

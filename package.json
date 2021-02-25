@@ -6,10 +6,11 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "backend": "json-server --watch server/db.json --port 8888",
+    "backend": "json-server --watch server/db.json --port 8000",
     "start": "concurrently \"yarn serve\" \"yarn backend\""
   },
   "dependencies": {
+    "concurrently": "^6.0.0",
     "core-js": "^3.9.0",
     "eslint-import-resolver-typescript": "^2.4.0",
     "lodash": "^4.17.21",
@@ -52,7 +53,9 @@
     "parserOptions": {
       "parser": "@typescript-eslint/parser"
     },
-    "rules": {}
+    "rules": {
+      "no-unused-vars": "off"
+    }
   },
   "browserslist": [
     "> 1%",
