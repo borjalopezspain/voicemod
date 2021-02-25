@@ -1,36 +1,36 @@
 <template>
   <section class="main-container">
-    <div class="section-title">
-      <div class="section-title__title">FAVOURITE VOICES</div>
-      <div class="section-title__separator"></div>
-    </div>
-    <div class="favs-container">
-      <div
-        class="voices-container__voice"
-        v-for="voice in favouriteVoicesData"
-        :key="voice.id"
-      >
-        <voice-item />
+    <div v-if="favouriteVoicesData.length > 0" class="favs-container">
+      <div class="section-title">
+        <div class="section-title__title">FAVOURITE VOICES</div>
+        <div class="section-title__separator"><div class="line"></div></div>
+      </div>
+      <div class="voices-container">
+        <voice-item
+          v-for="voice in favouriteVoicesData"
+          :key="voice.id"
+          :voice-data="voice"
+        />
       </div>
     </div>
-    <div class="section-title">
-      <div class="section-title__title">PRO VOICES</div>
-      <div class="section-title__separator"></div>
-    </div>
-    <div class="voices-container">
-      <div
-        class="voices-container__voice"
-        v-for="voice in filteredVoicesData"
-        :key="voice.id"
-      >
-        <voice-item />
+    <div class="filtered-voices-container">
+      <div class="section-title">
+        <div class="section-title__title">PRO VOICES</div>
+        <div class="section-title__separator"><div class="line"></div></div>
+      </div>
+      <div class="voices-container">
+        <voice-item
+          v-for="voice in filteredVoicesData"
+          :key="voice.id"
+          :voice-data="voice"
+        />
       </div>
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { Action, State } from "vuex-class";
 import { IVoiceItem } from "@/models";
 
@@ -55,20 +55,17 @@ export default class Home extends Vue {
   filteredVoicesList!: IVoiceItem[];
 
   // DATA
-  voicesData: IVoiceItem[] = [];
   favouriteVoicesData: IVoiceItem[] = [];
   filteredVoicesData: IVoiceItem[] = [];
 
   // METHODS
   async callGetVoicesList(): Promise<void> {
-    const res = await this.getVoicesList();
-    this.voicesData = this.filteredVoicesList;
+    await this.getVoicesList();
+    this.filteredVoicesData = this.filteredVoicesList;
   }
   async callGetFavouriteVoicesList(): Promise<void> {
-    const res = await this.getFavouriteVoicesList();
-    if (res) {
-      this.favouriteVoicesData = res;
-    }
+    await this.getFavouriteVoicesList();
+    this.favouriteVoicesData = this.favouriteVoicesList;
   }
 
   async mounted(): Promise<void> {
