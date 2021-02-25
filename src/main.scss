@@ -1,0 +1,24 @@
+@import "styles/variables";
+@import "styles/global";
+@import "styles/app";
+
+#app {
+  height: 100vh;
+}
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - #{$header} - #{$footer});
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.5s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
