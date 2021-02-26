@@ -7,4 +7,9 @@ export default class VoicesService implements IVoicesService {
 
   public getFavouriteVoicesList = (): AxiosPromise<any> =>
     axios.get(`${process.env.VUE_APP_DB_URL}/favourites`);
+
+  public addVoiceToFavourites = (
+    favouriteVoice: IVoicesService
+  ): AxiosPromise<any> =>
+    axios.post(`${process.env.VUE_APP_DB_URL}/favourites`, favouriteVoice);
 }
