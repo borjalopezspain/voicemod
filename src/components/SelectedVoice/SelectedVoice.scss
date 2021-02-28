@@ -1,0 +1,27 @@
+.selected-voice-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 2rem;
+  &:hover {
+    .selected-voice-container__favourite {
+      opacity: 1;
+    }
+  }
+  &__icon {
+    img {
+      width: 30px;
+    }
+  }
+  &__name {
+    font-weight: bold;
+    margin-right: 1rem;
+  }
+  &__favourite {
+    transition: opacity 0.3s ease-in;
+    opacity: 0;
+    &--is-in-favs {
+      opacity: 1;
+    }
+  }
+}

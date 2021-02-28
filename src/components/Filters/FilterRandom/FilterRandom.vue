@@ -9,16 +9,23 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Action } from "vuex-class";
+import { Action, State } from "vuex-class";
+import { IVoiceItem } from "@/models";
 
 @Component
 export default class FilterRandom extends Vue {
   @Action
   private setSelectedRandomVoice!: () => void;
 
+  @State((state) => state.Voices.selectedVoice)
+  selectedVoice!: IVoiceItem;
+
   //METHODS
   setSelectedRandom(): void {
     this.setSelectedRandomVoice();
+    const element = document.getElementById(this.selectedVoice.id);
+    if (element)
+      element.scrollIntoView({ block: "center", behavior: "smooth" });
   }
 }
 </script>

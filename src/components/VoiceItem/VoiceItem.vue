@@ -3,6 +3,7 @@
     class="voice-item"
     @click="selectVoice()"
     :class="selectedVoice.id === voiceData.id ? 'selected' : ''"
+    :id="voiceData.id"
   >
     <div class="voice-item__container">
       <div class="voice-item__icon">
