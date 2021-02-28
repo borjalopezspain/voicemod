@@ -6,6 +6,7 @@
     <div
       class="category-list-container__drowdown-btn"
       @click="showCategoryOptions = !showCategoryOptions"
+      v-click-outside="hideCategories"
     >
       {{ selectedCategory }}
       <transition name="slide">
@@ -41,8 +42,13 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Action, State } from "vuex-class";
+import ClickOutside from "vue-click-outside";
 
-@Component
+@Component({
+  directives: {
+    ClickOutside,
+  },
+})
 export default class FilterCategory extends Vue {
   @State((state) => state.Voices.voiceCategoryList)
   voiceCategoryList!: string[];
@@ -58,6 +64,10 @@ export default class FilterCategory extends Vue {
   filterVoicesByCategory(selectedCategory: string): void {
     this.selectedCategory = selectedCategory;
     this.filterVoicesBySelectedCategory(selectedCategory);
+  }
+
+  hideCategories(): void {
+    this.showCategoryOptions = false;
   }
 }
 </script>

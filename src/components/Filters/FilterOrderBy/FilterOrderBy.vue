@@ -6,6 +6,7 @@
     <div
       class="orderBy-list-container__drowdown-btn"
       @click="showOrderByOptions = !showOrderByOptions"
+      v-click-outside="hideOptions"
     >
       {{ selectedOrder }}
       <transition name="slide">
@@ -37,8 +38,13 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Action } from "vuex-class";
 import { IFilterOrderItem } from "@/models";
+import ClickOutside from "vue-click-outside";
 
-@Component
+@Component({
+  directives: {
+    ClickOutside,
+  },
+})
 export default class FilterOrderBy extends Vue {
   @Action
   private orderVoicesBySelectedOrder!: (selectedOrder: string) => void;
@@ -61,6 +67,10 @@ export default class FilterOrderBy extends Vue {
   filterVoicesByOrder(selectedOrder: IFilterOrderItem): void {
     this.selectedOrder = selectedOrder.label;
     this.orderVoicesBySelectedOrder(selectedOrder.value);
+  }
+
+  hideOptions(): void {
+    this.showOrderByOptions = false;
   }
 }
 </script>
