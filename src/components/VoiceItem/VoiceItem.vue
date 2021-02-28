@@ -1,10 +1,11 @@
 <template>
-  <div class="voice-item" @click="selectVoice()">
+  <div
+    class="voice-item"
+    @click="selectVoice()"
+    :class="selectedVoice.id === voiceData.id ? 'selected' : ''"
+  >
     <div class="voice-item__container">
-      <div
-        class="voice-item__icon"
-        :class="selectedVoice.id === voiceData.id ? 'selected' : ''"
-      >
+      <div class="voice-item__icon">
         <img
           :src="require(`../../assets/voiceIcons/${voiceData.icon}`)"
           :alt="voiceData.name"

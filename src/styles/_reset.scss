@@ -25,3 +25,11 @@ select,
 button {
   outline: none;
 }
+
+select::-ms-expand {
+  display: none;
+}
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}

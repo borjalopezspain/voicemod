@@ -1,4 +1,12 @@
 .voice-item {
+  &.selected {
+    .voice-item__icon {
+      background: linear-gradient(#00eeff, #00bbff);
+    }
+    .voice-item__label {
+      color: var(--text-selected);
+    }
+  }
   &__container {
     display: flex;
     flex-direction: column;
@@ -20,9 +28,6 @@
     opacity: 0.8;
     img {
       width: auto;
-    }
-    &.selected {
-      background: linear-gradient(#00eeff, #00bbff);
     }
     &:hover {
       opacity: 1;

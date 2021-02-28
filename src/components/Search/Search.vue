@@ -1,11 +1,22 @@
 <template>
-  <div>
+  <div class="search-container">
     <input
       type="text"
-      class="search-input"
+      class="search-container__input"
       @input="searchVoice()"
       v-model="searchText"
+      :placeholder="placeholder"
     />
+    <div
+      v-if="searchText !== ''"
+      class="search-container__clear-icon"
+      @click="
+        searchText = '';
+        searchVoice();
+      "
+    >
+      <img src="../../assets/filterIcons/search-close.svg" alt="clear search" />
+    </div>
   </div>
 </template>
 
@@ -20,6 +31,7 @@ export default class Search extends Vue {
 
   //DATA
   searchText: string = "";
+  placeholder: string = "Type something";
 
   // METHODS
   searchVoice() {

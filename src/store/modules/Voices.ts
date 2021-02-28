@@ -3,7 +3,8 @@ import voiceMutationTypes from "@/store/mutationTypes/Voices";
 import VoicesService from "@/services/implementations/VoicesService";
 import IVoicesService from "@/services/interfaces/IVoicesService";
 import { IVoiceItem, IManageFavouritesItem } from "@/models";
-import { filter, groupBy, map } from "lodash";
+import { filter, groupBy, map, orderBy } from "lodash";
+import RandomUtils from "@/utils/RandomUtils";
 
 @Module
 export default class Voices extends VuexModule {
@@ -14,6 +15,7 @@ export default class Voices extends VuexModule {
   favouriteVoicesList: IVoiceItem[] = [];
   filteredVoicesList: IVoiceItem[] = [];
   selectedVoice: IVoiceItem | unknown = {};
+  voiceCategoryList: string[] = [];
 
   /* ACTIONS */
   @Action
@@ -28,7 +30,10 @@ export default class Voices extends VuexModule {
           Object.keys(groupedCategories),
           (key) => key
         );
-        console.log(categoryesList);
+
+        categoryesList.unshift("all");
+
+        this.context.commit(voiceMutationTypes.SET_CATEGORIES, categoryesList);
       }
     } catch (error) {
       console.log(error);
@@ -98,14 +103,56 @@ export default class Voices extends VuexModule {
     const filteredVoicesBySearch = filter(
       this.voicesList,
       (voice: IVoiceItem) => {
-        const voiceLower = voice.name.toLocaleLowerCase();
-        return voiceLower.includes(searchText.toLocaleLowerCase());
+        const voiceLower = voice.name.toLowerCase();
+        return voiceLower.includes(searchText.toLowerCase());
       }
     );
     this.context.commit(
       voiceMutationTypes.SEARCH_VOICE_IN_VOICE_LIST,
       filteredVoicesBySearch
     );
+  }
+
+  @Action
+  public filterVoicesBySelectedCategory(selectedCategory: string): void {
+    let voices = this.voicesList;
+    const groupedVoicesByCategory = groupBy(this.voicesList, "tags");
+
+    const filteredVoicesByCategory =
+      groupedVoicesByCategory[selectedCategory.toLowerCase()];
+
+    if (selectedCategory !== "all") {
+      voices = filteredVoicesByCategory;
+    }
+
+    this.context.commit(voiceMutationTypes.SET_VOICES_BY_CATEGORY, voices);
+  }
+
+  @Action
+  public orderVoicesBySelectedOrder(
+    selectedOrder: boolean | "asc" | "desc"
+  ): void {
+    const orderedVoicesByOrder = orderBy(
+      this.voicesList,
+      ["name"],
+      [selectedOrder]
+    );
+
+    this.context.commit(
+      voiceMutationTypes.SET_VOICES_ORDER,
+      orderedVoicesByOrder
+    );
+  }
+
+  @Action
+  public setSelectedRandomVoice(): void {
+    const randomNumber = RandomUtils.RandomNumberInRange(
+      0,
+      this.filteredVoicesList.length
+    );
+    const randomItem = this.filteredVoicesList[randomNumber];
+
+    this.context.commit(voiceMutationTypes.SET_RANDOM_VOICE, randomItem);
   }
 
   /* MUTATIONS */
@@ -138,5 +185,25 @@ export default class Voices extends VuexModule {
   @Mutation
   public searchVoiceInVoiceList(filteredVoicesBySearch: IVoiceItem[]): void {
     this.filteredVoicesList = filteredVoicesBySearch;
+  }
+
+  @Mutation
+  public setCategories(categoryList: string[]): void {
+    this.voiceCategoryList = categoryList;
+  }
+
+  @Mutation
+  public setVoicesByCategory(filteredVoicesByCategory: IVoiceItem[]): void {
+    this.filteredVoicesList = filteredVoicesByCategory;
+  }
+
+  @Mutation
+  public setOrderVoices(orderedVoices: IVoiceItem[]): void {
+    this.filteredVoicesList = orderedVoices;
+  }
+
+  @Mutation
+  public setRandomVoice(randomVoice: IVoiceItem[]): void {
+    this.selectedVoice = randomVoice;
   }
 }
