@@ -8,14 +8,16 @@
   --text-selected: #00d9ff;
 
   --max-width-layout: 1024px;
-  --header-height: 50px;
-  --footer-height: 50px;
-
-  /* Responsive */
-  --mobile: "only screen and (max-width: 480px)";
-  --tablet: "only screen and (max-width: 768px)";
-  --tablet-landscape: "only screen and (max-width: 1024px)";
-  --desktop-regular: "only screen and (max-width: 1440px)";
-  --desktop-big: "only screen and (min-width: 1200px)";
-  --ie: "all and (-ms-high-contrast: none), (-ms-high-contrast: active)";
+  --min-width-layout: 1024px;
+  --header-height: 5rem;
+  --footer-height: 5rem;
 }
+
+/* Responsive */
+$mobile-small: "only screen and (max-width: 480px)";
+$mobile: "only screen and (max-width: 630px)";
+$tablet: "only screen and (max-width: 768px)";
+$tablet-landscape: "only screen and (max-width: 1024px)";
+$desktop-regular: "only screen and (max-width: 1440px)";
+$desktop-big: "only screen and (min-width: 1200px)";
+$ie: "all and (-ms-high-contrast: none), (-ms-high-contrast: active)";

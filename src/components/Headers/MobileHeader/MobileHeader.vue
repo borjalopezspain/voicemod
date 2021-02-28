@@ -1,6 +1,18 @@
 <template>
-  <header class="desktop-header">
-    <div class="desktop-header__search">
+  <header class="mobile-header">
+    <div class="mobile-header__icon" @click="showMenu = !showMenu">
+      <img src="../../../assets/otherIcons/menu.svg" alt="menu icon" />
+    </div>
+    <div v-if="showMenu" class="menu-container">
+      <div @click="showMenu = false" class="menu-container__close">
+        <img
+          src="../../../assets/filterIcons/search-close.svg"
+          alt="close menu"
+        />
+      </div>
+      <filter-category />
+    </div>
+    <!-- <div class="desktop-header__search">
       <search />
     </div>
     <div class="desktop-header__filters">
@@ -16,7 +28,7 @@
       <div class="desktop-header__filter filter-random">
         <filter-random />
       </div>
-    </div>
+    </div> -->
   </header>
 </template>
 
@@ -38,7 +50,10 @@ import FilterRandom from "@/components/Filters/FilterRandom/FilterRandom.vue";
     "filter-random": FilterRandom,
   },
 })
-export default class DesktopHeader extends Vue {}
+export default class MobileHeader extends Vue {
+  //DATA
+  showMenu: boolean = false;
+}
 </script>
 
-<style scoped lang="scss" src="./DesktopHeader.scss" />
+<style scoped lang="scss" src="./MobileHeader.scss" />

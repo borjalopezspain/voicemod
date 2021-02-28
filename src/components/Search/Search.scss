@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .search-container {
   position: relative;
   &__input {
@@ -24,6 +26,14 @@
     transition: opacity 0.3s ease-in;
     &:hover {
       opacity: 1;
+    }
+  }
+}
+
+@media #{$tablet} {
+  .search-container {
+    &__input {
+      width: 100%;
     }
   }
 }

@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .voices-container {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -23,5 +25,23 @@
       background: var(--line-separator);
       flex: 1;
     }
+  }
+}
+
+@media #{$tablet-landscape} {
+  .voices-container {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media #{$tablet} {
+  .voices-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media #{$mobile} {
+  .voices-container {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

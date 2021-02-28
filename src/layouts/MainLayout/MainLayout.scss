@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 #main-layout {
   display: flex;
   align-items: center;
@@ -6,16 +8,28 @@
   width: 100%;
   background: var(--primary);
   .layout-container {
-    min-width: var(--max-width-layout);
+    min-width: var(--min-width-layout);
+    max-width: var(--max-width-layout);
     &__header {
-      height: var(--header-height);
-      max-width: var(--max-width-layout);
+      padding: 1rem 0;
     }
-    &__content {
-      max-width: var(--max-width-layout);
+  }
+}
+
+@media #{$tablet-landscape} {
+  #main-layout {
+    .layout-container {
+      min-width: 100%;
+      max-width: 100%;
+      padding: 0 2rem;
     }
-    &__footer {
-      height: var(--footer-height);
+  }
+}
+
+@media #{$mobile} {
+  #main-layout {
+    .layout-container {
+      padding: 0 1rem;
     }
   }
 }

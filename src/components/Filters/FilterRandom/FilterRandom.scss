@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .random-container {
   display: flex;
   align-items: center;
@@ -27,5 +29,11 @@
   40%,
   60% {
     transform: translate3d(4px, 0, 0);
+  }
+}
+
+@media #{$tablet} {
+  .random-container {
+    justify-content: flex-end;
   }
 }

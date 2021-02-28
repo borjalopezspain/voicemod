@@ -1,3 +1,5 @@
+@import "../../styles//variables";
+
 .selected-voice-container {
   display: flex;
   align-items: center;
@@ -23,5 +25,11 @@
     &--is-in-favs {
       opacity: 1;
     }
+  }
+}
+
+@media #{$tablet} {
+  .selected-voice-container {
+    padding: 0;
   }
 }

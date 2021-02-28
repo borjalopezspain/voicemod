@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .orderBy-list-container {
   display: flex;
   align-items: center;
@@ -65,4 +67,12 @@
 .slide-enter,
 .slide-leave-to {
   transform: scaleY(0);
+}
+
+@media #{$tablet} {
+  .orderBy-list-container {
+    &__drowdown-btn {
+      width: 100%;
+    }
+  }
 }
