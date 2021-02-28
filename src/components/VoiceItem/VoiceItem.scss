@@ -5,11 +5,6 @@
     align-items: center;
     margin-bottom: 2rem;
     cursor: pointer;
-    &:hover {
-      .voice-item__heart {
-        opacity: 1;
-      }
-    }
   }
   &__icon {
     background: var(--white);
@@ -20,12 +15,20 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    transition: 0.5s ease-in;
+    transition: background 0.5s ease-in;
+    transition: opacity 0.2s ease-in;
+    opacity: 0.8;
     img {
       width: auto;
     }
     &.selected {
       background: linear-gradient(#00eeff, #00bbff);
+    }
+    &:hover {
+      opacity: 1;
+      .voice-item__heart {
+        opacity: 1;
+      }
     }
   }
   &__label {
@@ -33,13 +36,14 @@
     padding: 1rem;
     font-weight: bold;
     color: var(--white);
+    opacity: 0.8;
   }
   &__heart {
     position: absolute;
     top: 0;
     right: 0;
     opacity: 0;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.4s ease;
     &__icon-container {
       background: var(--white);
       border-radius: 50%;

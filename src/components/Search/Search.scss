@@ -1,0 +1,11 @@
+.search-input {
+  min-width: 25rem;
+  min-height: 3.5rem;
+  border-radius: 1.8rem;
+  background: url(../../assets/filterIcons/search.svg) var(--primary) left
+    center no-repeat;
+  border: none;
+  color: var(--white);
+  font-weight: bold;
+  padding-left: 3.5rem;
+}
