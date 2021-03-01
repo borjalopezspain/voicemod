@@ -5,16 +5,14 @@
         <desktop-header v-if="pageWidth > 630" />
         <mobile-header v-else />
       </div>
-      <div class="layout-container__content">
+      <section class="layout-container__content">
         <router-view />
-      </div>
+      </section>
       <div class="layout-container__footer">
         <desktop-footer />
       </div>
     </div>
-    <div>
-      <back-to-top />
-    </div>
+    <back-to-top />
   </section>
 </template>
 

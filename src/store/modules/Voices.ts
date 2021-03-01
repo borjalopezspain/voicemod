@@ -117,7 +117,7 @@ export default class Voices extends VuexModule {
   @Action
   public filterVoicesBySelectedCategory(selectedCategory: string): void {
     let voices = this.voicesList;
-    const groupedVoicesByCategory = groupBy(this.filteredVoicesList, "tags");
+    const groupedVoicesByCategory = groupBy(this.voicesList, "tags");
 
     const filteredVoicesByCategory =
       groupedVoicesByCategory[selectedCategory.toLowerCase()];

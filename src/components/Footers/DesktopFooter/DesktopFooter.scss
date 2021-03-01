@@ -1,0 +1,11 @@
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  &__copy {
+    color: var(--white);
+    text-align: center;
+    font-weight: bold;
+  }
+}

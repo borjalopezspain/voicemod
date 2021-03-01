@@ -9,8 +9,16 @@
 
   --max-width-layout: 1024px;
   --min-width-layout: 1024px;
-  --header-height: 5rem;
-  --footer-height: 5rem;
+  --header-min-height-desktop: 10rem;
+  --header-min-height-mobile: 4rem;
+  --footer-min-height-desktop: 4rem;
+  --footer-min-height-mobile: 2rem;
+  --content-min-height-desktop: calc(
+    var(--header-min-height-desktop) + var(--footer-min-height-desktop)
+  );
+  --content-min-height-mobile: calc(
+    var(--header-min-height-mobile) + var(--footer-min-height-mobile)
+  );
 }
 
 /* Responsive */

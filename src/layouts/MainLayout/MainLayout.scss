@@ -12,6 +12,16 @@
     max-width: var(--max-width-layout);
     &__header {
       padding: 2rem 0 4rem 0;
+      min-height: var(--header-min-height-desktop);
+    }
+    &__content {
+      min-height: calc(100vh - var(--content-min-height-desktop));
+    }
+    &__footer {
+      min-height: var(--footer-min-height-desktop);
+      display: flex;
+      align-items: center;
+      width: 100%;
     }
   }
 }
@@ -31,7 +41,15 @@
     .layout-container {
       padding: 0 1rem;
       &__header {
-        padding: 2rem 0;
+        padding: 0;
+        min-height: var(--header-min-height-mobile);
+      }
+      &__content {
+        min-height: calc(100vh - var(--content-min-height-mobile));
+      }
+      &__footer {
+        color: white;
+        min-height: var(--footer-min-height-mobile);
       }
     }
   }
