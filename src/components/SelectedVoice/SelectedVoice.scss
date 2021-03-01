@@ -6,7 +6,8 @@
   cursor: pointer;
   padding: 0 2rem;
   &:hover {
-    .selected-voice-container__favourite {
+    .selected-voice-container__favourite,
+    .selected-voice-container__remove-selected {
       opacity: 1;
     }
   }
@@ -20,10 +21,22 @@
     margin-right: 1rem;
   }
   &__favourite {
-    transition: opacity 0.3s ease-in;
+    transition: 0.3s linear;
     opacity: 0;
     &--is-in-favs {
       opacity: 1;
+    }
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  &__remove-selected {
+    margin-left: 1rem;
+    cursor: pointer;
+    transition: 0.3s linear;
+    opacity: 0;
+    &:hover {
+      transform: scale(1.1) rotate(10deg);
     }
   }
 }
@@ -45,6 +58,9 @@
       img {
         width: 1.7rem;
       }
+    }
+    &__remove-selected {
+      opacity: 1;
     }
     &__icon {
       img {

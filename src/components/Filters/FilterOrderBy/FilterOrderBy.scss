@@ -53,7 +53,7 @@
   &__icon {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 0.5rem;
     height: 100%;
     display: flex;
     align-items: center;
@@ -64,8 +64,8 @@
   }
 }
 
-.slide-enter,
-.slide-leave-to {
+.openDropdown-enter,
+.openDropdown-leave-to {
   transform: scaleY(0);
 }
 

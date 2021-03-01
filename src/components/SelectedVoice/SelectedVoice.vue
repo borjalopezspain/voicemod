@@ -33,6 +33,12 @@
         alt="fav-off"
       />
     </div>
+    <div
+      class="selected-voice-container__remove-selected"
+      @click.stop="removeSelectVoice()"
+    >
+      <img src="../../assets/filterIcons/search-close.svg" alt="clear search" />
+    </div>
   </div>
 </template>
 
@@ -58,6 +64,9 @@ export default class SelectedVoice extends Vue {
   private removeVoiceFromFavouriteList!: (
     payload: IManageFavouritesItem
   ) => void;
+
+  @Action
+  private setSelectedVoice!: (selectedVoice: IVoiceItem | {}) => void;
 
   //METHODS
   goToSelectedVoice(): void {
@@ -95,6 +104,10 @@ export default class SelectedVoice extends Vue {
     } else {
       this.removeVoiceFromFavouriteList(payload);
     }
+  }
+
+  removeSelectVoice(): void {
+    this.setSelectedVoice({});
   }
 }
 </script>

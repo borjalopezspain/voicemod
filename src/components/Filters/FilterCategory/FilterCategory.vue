@@ -9,7 +9,7 @@
       v-click-outside="hideCategories"
     >
       {{ selectedCategory }}
-      <transition name="slide">
+      <transition name="openDropdown">
         <ul
           class="category-list-container__drowdown"
           v-if="showCategoryOptions"

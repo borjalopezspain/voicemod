@@ -69,7 +69,6 @@ export default class Voices extends VuexModule {
         payload.voiceFavsItem
       );
 
-      console.log(response);
       if (response.status !== 500) {
         this.context.commit(
           voiceMutationTypes.SAVE_VOICE_IN_FAVOURITE_LIST,
@@ -118,7 +117,7 @@ export default class Voices extends VuexModule {
   @Action
   public filterVoicesBySelectedCategory(selectedCategory: string): void {
     let voices = this.voicesList;
-    const groupedVoicesByCategory = groupBy(this.voicesList, "tags");
+    const groupedVoicesByCategory = groupBy(this.filteredVoicesList, "tags");
 
     const filteredVoicesByCategory =
       groupedVoicesByCategory[selectedCategory.toLowerCase()];
@@ -135,7 +134,7 @@ export default class Voices extends VuexModule {
     selectedOrder: boolean | "asc" | "desc"
   ): void {
     const orderedVoicesByOrder = orderBy(
-      this.voicesList,
+      this.filteredVoicesList,
       ["name"],
       [selectedOrder]
     );

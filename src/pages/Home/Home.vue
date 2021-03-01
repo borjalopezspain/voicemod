@@ -2,16 +2,16 @@
   <section class="main-container">
     <div v-if="favs.length > 0" class="favs-container">
       <div class="section-title">
-        <div class="section-title__title">FAVOURITE VOICES</div>
+        <div class="section-title__title">{{ favsTitle }}</div>
         <div class="section-title__separator"><div class="line"></div></div>
       </div>
       <div class="voices-container">
         <voice-item v-for="voice in favs" :key="voice.id" :voice-data="voice" />
       </div>
     </div>
-    <div class="filtered-voices-container">
+    <div class="filtered-voices-container" v-if="filteredVoicesList.length > 0">
       <div class="section-title">
-        <div class="section-title__title">PRO VOICES</div>
+        <div class="section-title__title">{{ proTitle }}</div>
         <div class="section-title__separator"><div class="line"></div></div>
       </div>
       <div class="voices-container">
@@ -20,6 +20,14 @@
           :key="voice.id"
           :voice-data="voice"
         />
+      </div>
+    </div>
+    <div
+      v-else-if="filteredVoicesList.length === 0 && isDataLoaded"
+      class="no-voices"
+    >
+      <div class="no-voices__text">
+        {{ noVoicesMsg }}
       </div>
     </div>
   </section>
@@ -50,6 +58,12 @@ export default class Home extends Vue {
   @State((state) => state.Voices.filteredVoicesList)
   filteredVoicesList!: IVoiceItem[];
 
+  //DATA
+  favsTitle: string = "FAVOURITE VOICES";
+  proTitle: string = "PRO VOICES";
+  noVoicesMsg: string = "NO VOICES FOUND";
+  isDataLoaded: boolean = false;
+
   // METHODS
   async callGetVoicesList(): Promise<void> {
     await this.getVoicesList();
@@ -61,6 +75,7 @@ export default class Home extends Vue {
   async mounted(): Promise<void> {
     await this.callGetVoicesList();
     await this.callGetFavouriteVoicesList();
+    this.isDataLoaded = true;
   }
 }
 </script>

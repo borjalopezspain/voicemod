@@ -9,7 +9,7 @@
       v-click-outside="hideOptions"
     >
       {{ selectedOrder }}
-      <transition name="slide">
+      <transition name="openDropdown">
         <ul class="orderBy-list-container__drowdown" v-if="showOrderByOptions">
           <li
             v-for="option in orderByOptions"

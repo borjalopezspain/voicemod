@@ -28,6 +28,18 @@
   }
 }
 
+.no-voices {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20rem;
+  &__text {
+    color: var(--white);
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
 @media #{$tablet-landscape} {
   .voices-container {
     grid-template-columns: repeat(5, 1fr);
