@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "backend": "json-server --watch server/db.json --port 8000",
-    "start": "concurrently \"yarn serve\" \"yarn backend\""
+    "start": "concurrently --kill-others --raw \"yarn serve\" \"yarn backend\""
   },
   "dependencies": {
     "concurrently": "^6.0.0",
