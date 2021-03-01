@@ -12,6 +12,9 @@
         <desktop-footer />
       </div>
     </div>
+    <div>
+      <back-to-top />
+    </div>
   </section>
 </template>
 
@@ -20,18 +23,23 @@ import { Component, Vue } from "vue-property-decorator";
 import DesktopHeader from "@/components/Headers/DesktopHeader/DesktopHeader.vue";
 import MobileHeader from "@/components/Headers/MobileHeader/MobileHeader.vue";
 import DesktopFooter from "@/components/Footers/DesktopFooter/DesktopFooter.vue";
+import BackToTop from "@/components/BackToTop/BackToTop.vue";
 
 @Component({
   components: {
     "desktop-header": DesktopHeader,
     "desktop-footer": DesktopFooter,
     "mobile-header": MobileHeader,
+    "back-to-top": BackToTop,
   },
 })
 export default class MainLayout extends Vue {
+  //DATA
   pageWidth: number = 0;
 
+  //METHODS
   mounted(): void {
+    this.pageWidth = window.innerWidth;
     window.addEventListener("resize", () => {
       this.pageWidth = window.innerWidth;
     });

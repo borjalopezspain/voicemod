@@ -1,9 +1,13 @@
 import { AxiosPromise } from "axios";
-import { IVoiceItem } from "@/models";
+import { IVoiceItem, IVoiceServerResponse } from "@/models";
 
 export default interface IVoicesService {
-  getVoicesList(): AxiosPromise<any>;
-  getFavouriteVoicesList(): AxiosPromise<any>;
-  addVoiceToFavourites(favouriteVoice: IVoiceItem): AxiosPromise<any>;
-  removeVoiceFromFavourites(favouriteVoiceId: string): AxiosPromise<any>;
+  getVoicesList(): AxiosPromise<IVoiceServerResponse[]>;
+  getFavouriteVoicesList(): AxiosPromise<IVoiceServerResponse[]>;
+  addVoiceToFavourites(
+    favouriteVoice: IVoiceItem
+  ): AxiosPromise<IVoiceServerResponse[]>;
+  removeVoiceFromFavourites(
+    favouriteVoiceId: string
+  ): AxiosPromise<IVoiceServerResponse[]>;
 }

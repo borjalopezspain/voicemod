@@ -11,7 +11,7 @@
     min-width: var(--min-width-layout);
     max-width: var(--max-width-layout);
     &__header {
-      padding: 1rem 0;
+      padding: 2rem 0 4rem 0;
     }
   }
 }
@@ -30,6 +30,9 @@
   #main-layout {
     .layout-container {
       padding: 0 1rem;
+      &__header {
+        padding: 2rem 0;
+      }
     }
   }
 }

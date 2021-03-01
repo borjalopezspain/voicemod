@@ -1,34 +1,44 @@
 <template>
   <header class="mobile-header">
-    <div class="mobile-header__icon" @click="showMenu = !showMenu">
-      <img src="../../../assets/otherIcons/menu.svg" alt="menu icon" />
+    <div
+      class="mobile-header__icon"
+      :class="showMenu ? 'mobile-header__icon--opened' : ''"
+      @click="showMenu = !showMenu"
+    >
+      <div
+        class="menu-bar"
+        v-for="(bar, index) of 3"
+        :class="[
+          `menu-bar__${index}`,
+          changeMenuIconColor ? 'menu-bar--scrolled-color' : '',
+        ]"
+        :key="index"
+      />
     </div>
-    <div v-if="showMenu" class="menu-container">
-      <div @click="showMenu = false" class="menu-container__close">
-        <img
-          src="../../../assets/filterIcons/search-close.svg"
-          alt="close menu"
-        />
+    <div
+      class="menu-container"
+      :class="showMenu ? 'menu-container--opened' : ''"
+    >
+      <div class="menu-container__search">
+        <search />
       </div>
-      <filter-category />
+      <div class="menu-container__filters">
+        <div class="menu-container__filter filter-cateogry">
+          <filter-category />
+        </div>
+        <div class="menu-container__filter filter-order-by">
+          <filter-order-by />
+        </div>
+        <div class="grouped-filter">
+          <div class="menu-container__filter selected-cateogy">
+            <selected-voice />
+          </div>
+          <div class="menu-container__filter filter-random">
+            <filter-random />
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- <div class="desktop-header__search">
-      <search />
-    </div>
-    <div class="desktop-header__filters">
-      <div class="desktop-header__filter selected-cateogy">
-        <selected-voice />
-      </div>
-      <div class="desktop-header__filter filter-cateogry">
-        <filter-category />
-      </div>
-      <div class="desktop-header__filter filter-order-by">
-        <filter-order-by />
-      </div>
-      <div class="desktop-header__filter filter-random">
-        <filter-random />
-      </div>
-    </div> -->
   </header>
 </template>
 
@@ -53,6 +63,27 @@ import FilterRandom from "@/components/Filters/FilterRandom/FilterRandom.vue";
 export default class MobileHeader extends Vue {
   //DATA
   showMenu: boolean = false;
+  changeMenuIconColor: boolean = false;
+
+  //METHODS
+  scrollHandler() {
+    if (
+      document.body.scrollTop > 200 ||
+      document.documentElement.scrollTop > 200
+    ) {
+      this.changeMenuIconColor = true;
+    } else {
+      this.changeMenuIconColor = false;
+    }
+  }
+
+  mounted(): void {
+    window.addEventListener("scroll", this.scrollHandler);
+  }
+
+  destroyed(): void {
+    window.addEventListener("scroll", () => {});
+  }
 }
 </script>
 

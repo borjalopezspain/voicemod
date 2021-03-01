@@ -44,6 +44,7 @@ import { find, findIndex } from "lodash";
 
 @Component
 export default class SelectedVoice extends Vue {
+  //STORE
   @State((state) => state.Voices.selectedVoice)
   selectedVoice!: IVoiceItem;
 
@@ -84,7 +85,7 @@ export default class SelectedVoice extends Vue {
       (favVoice) => favVoice.id === this.selectedVoice.id
     );
 
-    const payload: any = {
+    const payload: IManageFavouritesItem = {
       voiceFavsItem: this.selectedVoice,
       voiceFavsIndex: isInFavsIndex,
     };

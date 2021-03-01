@@ -38,6 +38,7 @@ import VoiceItem from "@/components/VoiceItem/VoiceItem.vue";
   },
 })
 export default class Home extends Vue {
+  //STORE
   @Action
   private getVoicesList!: () => Promise<IVoiceItem[]>;
 

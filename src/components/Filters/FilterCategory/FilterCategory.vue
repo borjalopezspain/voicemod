@@ -50,6 +50,7 @@ import ClickOutside from "vue-click-outside";
   },
 })
 export default class FilterCategory extends Vue {
+  //STORE
   @State((state) => state.Voices.voiceCategoryList)
   voiceCategoryList!: string[];
 

@@ -68,6 +68,8 @@ export default class Voices extends VuexModule {
       const response = await this.voicesService.addVoiceToFavourites(
         payload.voiceFavsItem
       );
+
+      console.log(response);
       if (response.status !== 500) {
         this.context.commit(
           voiceMutationTypes.SAVE_VOICE_IN_FAVOURITE_LIST,

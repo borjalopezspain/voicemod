@@ -12,7 +12,7 @@
   }
   &__icon {
     img {
-      width: 30px;
+      width: 3rem;
     }
   }
   &__name {
@@ -31,5 +31,25 @@
 @media #{$tablet} {
   .selected-voice-container {
     padding: 0;
+  }
+}
+
+@media #{$mobile} {
+  .selected-voice-container {
+    &__name {
+      color: var(--white);
+      margin-right: 0.5rem;
+    }
+    &__favourite {
+      opacity: 1;
+      img {
+        width: 1.7rem;
+      }
+    }
+    &__icon {
+      img {
+        width: 4rem;
+      }
+    }
   }
 }

@@ -1,0 +1,75 @@
+@import "../../styles//variables";
+
+.back-to-top-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+  animation: 0.3s both linear infinite;
+  &.showButton {
+    opacity: 1;
+  }
+  &:hover {
+    animation-name: bounce;
+    .back-to-top-container__icon {
+      &:before,
+      &:after {
+        background: var(--text-selected);
+      }
+    }
+  }
+  &__icon {
+    position: relative;
+    width: 2rem;
+    height: 1.5em;
+    display: inline-block;
+    &:before {
+      left: 68%;
+      transform: rotate(-45deg);
+    }
+    &:after {
+      right: 68%;
+      transform: rotate(45deg);
+    }
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      background: white;
+      border-radius: 0.2rem;
+      display: block;
+      height: 100%;
+      width: 25%;
+      transition: 0.3s ease-in;
+    }
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.5rem);
+  }
+}
+
+@media #{$mobile} {
+  .back-to-top-container {
+    animation: none;
+    transform: scale(0.7);
+    bottom: 0;
+    right: 1rem;
+    &__icon {
+      &:before,
+      &:after {
+        transition: none;
+        background: var(--text-selected);
+      }
+    }
+  }
+}

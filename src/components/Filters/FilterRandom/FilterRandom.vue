@@ -14,6 +14,7 @@ import { IVoiceItem } from "@/models";
 
 @Component
 export default class FilterRandom extends Vue {
+  //STORE
   @Action
   private setSelectedRandomVoice!: () => void;
 

@@ -46,6 +46,7 @@ import ClickOutside from "vue-click-outside";
   },
 })
 export default class FilterOrderBy extends Vue {
+  //STORE
   @Action
   private orderVoicesBySelectedOrder!: (selectedOrder: string) => void;
 

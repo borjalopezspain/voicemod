@@ -26,6 +26,7 @@ import { Action } from "vuex-class";
 
 @Component
 export default class Search extends Vue {
+  //STORE
   @Action
   private searchVoiceInVoices!: (searchText: string) => void;
 

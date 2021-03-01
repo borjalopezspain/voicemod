@@ -39,6 +39,7 @@ import { IVoiceItem, IManageFavouritesItem } from "@/models";
 
 @Component
 export default class VoiceItem extends Vue {
+  //STORE
   @Prop({ required: true, type: Object }) voiceData!: IVoiceItem;
 
   @State((state) => state.Voices.selectedVoice)
@@ -75,7 +76,7 @@ export default class VoiceItem extends Vue {
       (favVoice) => favVoice.id === this.voiceData.id
     );
 
-    const payload: any = {
+    const payload: IManageFavouritesItem = {
       voiceFavsItem: this.voiceData,
       voiceFavsIndex: isInFavsIndex,
     };
