@@ -12,7 +12,7 @@
           :drop-down-options="categoryFilterOptions"
           @callFilterAction="callFilterVoicesByCategory"
         >
-          <img src="/assets/filterIcons/filter.svg" alt="filter icon" />
+          <img src="@/assets/filterIcons/filter.svg" alt="filter icon" />
         </filter-with-dropdown>
       </div>
       <div class="desktop-header__filter filter-order-by">
@@ -20,7 +20,7 @@
           :drop-down-options="orderByFilterOptions"
           @callFilterAction="callFilterVoicesByOrder"
         >
-          <img src="/assets/filterIcons/order.svg" alt="filter icon" />
+          <img src="@/assets/filterIcons/order.svg" alt="order icon" />
         </filter-with-dropdown>
       </div>
       <div class="desktop-header__filter filter-random">
