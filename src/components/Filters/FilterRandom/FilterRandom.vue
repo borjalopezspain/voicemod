@@ -1,9 +1,6 @@
 <template>
   <div @click="setSelectedRandom" class="random-container">
-    <img
-      src="../../../assets/filterIcons/button-random.svg"
-      alt="random icon"
-    />
+    <img src="@/assets/filterIcons/button-random.svg" alt="random icon" />
   </div>
 </template>
 

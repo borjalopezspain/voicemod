@@ -1,9 +1,6 @@
 <template>
   <section id="main-layout">
-    <div
-      class="layout-container"
-      :class="fixHeader ? 'layout-container--has-fixed-header' : ''"
-    >
+    <div class="layout-container">
       <div
         class="layout-container__header"
         :class="fixHeader ? 'layout-container__header--fixed' : ''"
@@ -17,7 +14,7 @@
         <main-footer />
       </div>
     </div>
-    <back-to-top />
+    <back-to-top :show-back-to-top="showBackToTop" />
   </section>
 </template>
 
@@ -35,20 +32,40 @@ import VoicesHeader from "@/components/Headers/VoicesHeader/VoicesHeader.vue";
   },
 })
 export default class MainLayout extends Vue {
+  //DATA
+
   fixHeader: boolean = false;
-  scrollHandler() {
+  showBackToTop: boolean = false;
+  headerJumpScroll: number = 50;
+  backToTopJumpScroll: number = 200;
+
+  //METHODS
+  handleScrollHeader(): void {
     if (
-      document.body.scrollTop > 50 ||
-      document.documentElement.scrollTop > 50
+      document.body.scrollTop > this.headerJumpScroll ||
+      document.documentElement.scrollTop > this.headerJumpScroll
     ) {
       this.fixHeader = true;
     } else {
       this.fixHeader = false;
     }
   }
+  handleScrollBackToTop(): void {
+    if (
+      document.body.scrollTop > this.backToTopJumpScroll ||
+      document.documentElement.scrollTop > this.backToTopJumpScroll
+    ) {
+      this.showBackToTop = true;
+    } else {
+      this.showBackToTop = false;
+    }
+  }
 
   mounted(): void {
-    window.addEventListener("scroll", this.scrollHandler);
+    window.addEventListener("scroll", () => {
+      this.handleScrollHeader();
+      this.handleScrollBackToTop();
+    });
   }
 
   destroyed(): void {

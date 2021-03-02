@@ -15,7 +15,7 @@
         searchVoice();
       "
     >
-      <img src="../../assets/filterIcons/search-close.svg" alt="clear search" />
+      <img src="@/assets/filterIcons/search-close.svg" alt="clear search" />
     </div>
   </div>
 </template>
@@ -35,7 +35,7 @@ export default class Search extends Vue {
   placeholder: string = "Type something";
 
   // METHODS
-  searchVoice() {
+  searchVoice(): void {
     this.searchVoiceInVoices(this.searchText);
   }
 }

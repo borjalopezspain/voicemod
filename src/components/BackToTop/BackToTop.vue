@@ -9,35 +9,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component
 export default class BackToTop extends Vue {
-  //DATA
-  showBackToTop: boolean = false;
-
-  //METHODS
-  scrollHandler() {
-    if (
-      document.body.scrollTop > 200 ||
-      document.documentElement.scrollTop > 200
-    ) {
-      this.showBackToTop = true;
-    } else {
-      this.showBackToTop = false;
-    }
-  }
+  @Prop({ required: true, type: Boolean }) showBackToTop!: boolean[];
 
   goToTop(): void {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  mounted(): void {
-    window.addEventListener("scroll", this.scrollHandler);
-  }
-
-  destroyed(): void {
-    window.addEventListener("scroll", () => {});
   }
 }
 </script>

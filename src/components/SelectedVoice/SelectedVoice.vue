@@ -6,7 +6,7 @@
   >
     <div class="selected-voice-container__icon">
       <img
-        :src="require(`../../assets/voiceIcons/${selectedVoice.icon}`)"
+        :src="require(`@/assets/voiceIcons/${selectedVoice.icon}`)"
         :alt="selectedVoice.name"
       />
     </div>
@@ -24,12 +24,12 @@
     >
       <img
         v-if="isVoiceInFavourites()"
-        src="../../assets/favIcons/voice-favourite.svg"
+        src="@/assets/favIcons/voice-favourite.svg"
         alt="fav-on"
       />
       <img
         v-else
-        src="../../assets/favIcons/voice-favourite-off.svg"
+        src="@/assets/favIcons/voice-favourite-off.svg"
         alt="fav-off"
       />
     </div>
@@ -37,7 +37,7 @@
       class="selected-voice-container__remove-selected"
       @click.stop="removeSelectVoice()"
     >
-      <img src="../../assets/filterIcons/search-close.svg" alt="clear search" />
+      <img src="@/assets/filterIcons/search-close.svg" alt="clear search" />
     </div>
   </div>
 </template>

@@ -28,14 +28,17 @@
             filter-icon-name="filter"
             :drop-down-options="categoryFilterOptions"
             @callFilterAction="callFilterVoicesByCategory"
-          />
+          >
+            <img src="/assets/filterIcons/filter.svg" alt="filter icon" />
+          </filter-with-dropdown>
         </div>
         <div class="menu-container__filter filter-order-by">
           <filter-with-dropdown
-            filter-icon-name="order"
             :drop-down-options="orderByFilterOptions"
             @callFilterAction="callFilterVoicesByOrder"
-          />
+          >
+            <img src="/assets/filterIcons/order.svg" alt="filter icon" />
+          </filter-with-dropdown>
         </div>
         <div class="grouped-filter">
           <div class="menu-container__filter selected-cateogy">
@@ -78,6 +81,7 @@ export default class MobileHeader extends Vue {
   //DATA
   showMenu: boolean = false;
   changeMenuIconColor: boolean = false;
+  scrollJumpMenu: number = 200;
 
   //METHODS
   callFilterVoicesByOrder(selectedOption: string): void {
@@ -89,8 +93,8 @@ export default class MobileHeader extends Vue {
   }
   scrollHandler() {
     if (
-      document.body.scrollTop > 200 ||
-      document.documentElement.scrollTop > 200
+      document.body.scrollTop > this.scrollJumpMenu ||
+      document.documentElement.scrollTop > this.scrollJumpMenu
     ) {
       this.changeMenuIconColor = true;
     } else {

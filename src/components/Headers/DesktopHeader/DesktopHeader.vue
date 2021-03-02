@@ -9,17 +9,19 @@
       </div>
       <div class="desktop-header__filter filter-cateogry">
         <filter-with-dropdown
-          filter-icon-name="filter"
           :drop-down-options="categoryFilterOptions"
           @callFilterAction="callFilterVoicesByCategory"
-        />
+        >
+          <img src="/assets/filterIcons/filter.svg" alt="filter icon" />
+        </filter-with-dropdown>
       </div>
       <div class="desktop-header__filter filter-order-by">
         <filter-with-dropdown
-          filter-icon-name="order"
           :drop-down-options="orderByFilterOptions"
           @callFilterAction="callFilterVoicesByOrder"
-        />
+        >
+          <img src="/assets/filterIcons/order.svg" alt="filter icon" />
+        </filter-with-dropdown>
       </div>
       <div class="desktop-header__filter filter-random">
         <filter-random />
@@ -30,7 +32,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { Action, State } from "vuex-class";
 
 import Search from "@/components/Search/Search.vue";
 import SelectedVoice from "@/components/SelectedVoice/SelectedVoice.vue";

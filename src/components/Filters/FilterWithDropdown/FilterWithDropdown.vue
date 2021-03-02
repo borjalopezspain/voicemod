@@ -1,10 +1,7 @@
 <template>
   <div class="filter-container">
     <div class="filter-container__icon">
-      <img
-        :src="require(`../../../assets/filterIcons/${filterIconName}.svg`)"
-        alt="filter icon"
-      />
+      <slot />
     </div>
     <dropdown-component
       :drop-down-options="dropDownOptions"
@@ -25,7 +22,6 @@ import Dropdown from "@/components/Drowdown/Dropdown.vue";
 })
 export default class FilterWithDropdown extends Vue {
   @Prop({ required: true, type: Array }) dropDownOptions!: IFilterOrderItem[];
-  @Prop({ required: true, type: String }) filterIconName!: string;
 
   //METHODS
   callFilterAction(selectedItem: string): void {

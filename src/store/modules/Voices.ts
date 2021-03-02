@@ -158,7 +158,7 @@ export default class Voices extends VuexModule {
   public setSelectedRandomVoice(): void {
     const randomNumber = RandomUtils.RandomNumberInRange(
       0,
-      this.filteredVoicesList.length
+      this.filteredVoicesList.length - 1
     );
     const randomItem = this.filteredVoicesList[randomNumber];
 
