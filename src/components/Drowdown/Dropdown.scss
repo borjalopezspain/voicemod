@@ -3,13 +3,15 @@
 .dropdown-container {
   display: flex;
   align-items: center;
+  flex: 1;
+  min-width: 13rem;
   &__order-icon {
     display: flex;
     align-items: center;
     margin-right: 1.5rem;
   }
   &__drowdown-btn {
-    min-width: 13rem;
+    width: 100%;
     min-height: 3.5rem;
     color: var(--white);
     text-transform: capitalize;
@@ -70,7 +72,7 @@
 }
 
 @media #{$tablet} {
-  .dropdown-container-container {
+  .dropdown-container {
     &__drowdown-btn {
       width: 100%;
     }

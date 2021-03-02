@@ -24,10 +24,18 @@
       </div>
       <div class="menu-container__filters">
         <div class="menu-container__filter filter-cateogry">
-          <filter-category />
+          <filter-with-dropdown
+            filter-icon-name="filter"
+            :drop-down-options="categoryFilterOptions"
+            @callFilterAction="callFilterVoicesByCategory"
+          />
         </div>
         <div class="menu-container__filter filter-order-by">
-          <filter-order-by />
+          <filter-with-dropdown
+            filter-icon-name="order"
+            :drop-down-options="orderByFilterOptions"
+            @callFilterAction="callFilterVoicesByOrder"
+          />
         </div>
         <div class="grouped-filter">
           <div class="menu-container__filter selected-cateogy">
@@ -43,29 +51,42 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
+import { Action, State } from "vuex-class";
 
 import Search from "@/components/Search/Search.vue";
 import SelectedVoice from "@/components/SelectedVoice/SelectedVoice.vue";
-import FilterCategory from "@/components/Filters/FilterCategory/FilterCategory.vue";
-import FilterOrderBy from "@/components/Filters/FilterOrderBy/FilterOrderBy.vue";
+import FilterWithDropdown from "@/components/Filters/FilterWithDropdown/FilterWithDropdown.vue";
 import FilterRandom from "@/components/Filters/FilterRandom/FilterRandom.vue";
+
+import { IFilterOrderItem } from "@/models";
 
 @Component({
   components: {
     search: Search,
     "selected-voice": SelectedVoice,
-    "filter-category": FilterCategory,
-    "filter-order-by": FilterOrderBy,
     "filter-random": FilterRandom,
+    "filter-with-dropdown": FilterWithDropdown,
   },
 })
 export default class MobileHeader extends Vue {
+  @Prop({ required: true, type: Array })
+  categoryFilterOptions!: IFilterOrderItem[];
+  @Prop({ required: true, type: Array })
+  orderByFilterOptions!: IFilterOrderItem[];
+
   //DATA
   showMenu: boolean = false;
   changeMenuIconColor: boolean = false;
 
   //METHODS
+  callFilterVoicesByOrder(selectedOption: string): void {
+    this.$emit("filterByOrder", selectedOption);
+  }
+
+  callFilterVoicesByCategory(selectedOption: string): void {
+    this.$emit("filterByCategory", selectedOption);
+  }
   scrollHandler() {
     if (
       document.body.scrollTop > 200 ||

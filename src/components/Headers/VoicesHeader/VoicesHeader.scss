@@ -1,0 +1,15 @@
+@import "../../../styles/variables";
+
+.mobile-header {
+  display: none;
+}
+
+@media #{$mobile} {
+  .desktop-header {
+    display: none;
+  }
+
+  .mobile-header {
+    display: block;
+  }
+}

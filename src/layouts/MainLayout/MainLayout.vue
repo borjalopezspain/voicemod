@@ -2,14 +2,13 @@
   <section id="main-layout">
     <div class="layout-container">
       <div class="layout-container__header">
-        <desktop-header v-if="pageWidth > 630" />
-        <mobile-header v-else />
+        <voices-header />
       </div>
       <section class="layout-container__content">
         <router-view />
       </section>
       <div class="layout-container__footer">
-        <desktop-footer />
+        <main-footer />
       </div>
     </div>
     <back-to-top />
@@ -18,35 +17,18 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import DesktopHeader from "@/components/Headers/DesktopHeader/DesktopHeader.vue";
-import MobileHeader from "@/components/Headers/MobileHeader/MobileHeader.vue";
-import DesktopFooter from "@/components/Footers/DesktopFooter/DesktopFooter.vue";
+import Footer from "@/components/Footers/MainFooter/MainFooter.vue";
 import BackToTop from "@/components/BackToTop/BackToTop.vue";
+import VoicesHeader from "@/components/Headers/VoicesHeader/VoicesHeader.vue";
 
 @Component({
   components: {
-    "desktop-header": DesktopHeader,
-    "desktop-footer": DesktopFooter,
-    "mobile-header": MobileHeader,
+    "main-footer": Footer,
     "back-to-top": BackToTop,
+    "voices-header": VoicesHeader,
   },
 })
-export default class MainLayout extends Vue {
-  //DATA
-  pageWidth: number = 0;
-
-  //METHODS
-  mounted(): void {
-    this.pageWidth = window.innerWidth;
-    window.addEventListener("resize", () => {
-      this.pageWidth = window.innerWidth;
-    });
-  }
-
-  destroyed(): void {
-    window.removeEventListener("resize", () => {});
-  }
-}
+export default class MainLayout extends Vue {}
 </script>
 
 <style scoped lang="scss" src="./MainLayout.scss" />

@@ -1,0 +1,19 @@
+@import "../../../styles/variables";
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  &__icon {
+    display: flex;
+    align-items: center;
+    margin-right: 1.5rem;
+  }
+}
+
+@media #{$tablet} {
+  .category-list-container {
+    &__drowdown-btn {
+      width: 100%;
+    }
+  }
+}
