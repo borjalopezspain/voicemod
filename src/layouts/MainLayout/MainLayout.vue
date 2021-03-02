@@ -1,7 +1,13 @@
 <template>
   <section id="main-layout">
-    <div class="layout-container">
-      <div class="layout-container__header">
+    <div
+      class="layout-container"
+      :class="fixHeader ? 'layout-container--has-fixed-header' : ''"
+    >
+      <div
+        class="layout-container__header"
+        :class="fixHeader ? 'layout-container__header--fixed' : ''"
+      >
         <voices-header />
       </div>
       <section class="layout-container__content">
@@ -28,7 +34,27 @@ import VoicesHeader from "@/components/Headers/VoicesHeader/VoicesHeader.vue";
     "voices-header": VoicesHeader,
   },
 })
-export default class MainLayout extends Vue {}
+export default class MainLayout extends Vue {
+  fixHeader: boolean = false;
+  scrollHandler() {
+    if (
+      document.body.scrollTop > 50 ||
+      document.documentElement.scrollTop > 50
+    ) {
+      this.fixHeader = true;
+    } else {
+      this.fixHeader = false;
+    }
+  }
+
+  mounted(): void {
+    window.addEventListener("scroll", this.scrollHandler);
+  }
+
+  destroyed(): void {
+    window.addEventListener("scroll", () => {});
+  }
+}
 </script>
 
 <style scoped lang="scss" src="./MainLayout.scss" />

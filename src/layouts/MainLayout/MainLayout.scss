@@ -10,9 +10,28 @@
   .layout-container {
     min-width: var(--min-width-layout);
     max-width: var(--max-width-layout);
+    &--has-fixed-header {
+      .layout-container__content {
+        animation: smoothScroll2 1s both;
+      }
+    }
     &__header {
       padding: 2rem 0 4rem 0;
       min-height: var(--header-min-height-desktop);
+      display: flex;
+      justify-content: center;
+      background: var(--primary);
+      transition: all 0.5s ease;
+      &--fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+        min-height: auto;
+        padding: 1rem 0;
+        animation: smoothScroll 1s both;
+      }
     }
     &__content {
       min-height: calc(100vh - var(--content-min-height-desktop));
@@ -23,6 +42,24 @@
       align-items: center;
       width: 100%;
     }
+  }
+}
+
+@keyframes smoothScroll {
+  0% {
+    transform: translateY(-40px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes smoothScroll2 {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(40px);
   }
 }
 

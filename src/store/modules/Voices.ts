@@ -16,6 +16,7 @@ export default class Voices extends VuexModule {
   filteredVoicesList: IVoiceItem[] = [];
   selectedVoice: IVoiceItem | unknown = {};
   voiceCategoryList: string[] = [];
+  orderType: boolean | "asc" | "desc" = false;
 
   /* ACTIONS */
   @Action
@@ -132,6 +133,9 @@ export default class Voices extends VuexModule {
     }
 
     this.context.commit(voiceMutationTypes.SET_VOICES_BY_CATEGORY, voices);
+
+    if (this.orderType !== false)
+      this.context.dispatch("orderVoicesBySelectedOrder", this.orderType);
   }
 
   @Action
@@ -144,10 +148,10 @@ export default class Voices extends VuexModule {
       [selectedOrder]
     );
 
-    this.context.commit(
-      voiceMutationTypes.SET_VOICES_ORDER,
-      orderedVoicesByOrder
-    );
+    this.context.commit(voiceMutationTypes.SET_VOICES_ORDER, {
+      orderedVoicesList: orderedVoicesByOrder,
+      orderType: selectedOrder,
+    });
   }
 
   @Action
@@ -204,8 +208,12 @@ export default class Voices extends VuexModule {
   }
 
   @Mutation
-  public setOrderVoices(orderedVoices: IVoiceItem[]): void {
-    this.filteredVoicesList = orderedVoices;
+  public setOrderVoices(orderedVoicesObj: {
+    orderedVoicesList: IVoiceItem[];
+    orderType: boolean | "asc" | "desc";
+  }): void {
+    this.filteredVoicesList = orderedVoicesObj.orderedVoicesList;
+    this.orderType = orderedVoicesObj.orderType;
   }
 
   @Mutation

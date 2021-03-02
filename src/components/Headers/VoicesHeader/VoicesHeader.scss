@@ -1,5 +1,8 @@
 @import "../../../styles/variables";
 
+.header {
+  min-width: var(--min-width-layout);
+}
 .mobile-header {
   display: none;
 }

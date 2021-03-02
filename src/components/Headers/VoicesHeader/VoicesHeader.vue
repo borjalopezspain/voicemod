@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="header">
     <desktop-header
       class="desktop-header"
       :category-filter-options="categoryDropdownOptions"
@@ -42,6 +42,8 @@ export default class VoicesHeader extends Vue {
 
   @Action
   private orderVoicesBySelectedOrder!: (selectedOrder: string) => void;
+
+  //DATA
 
   orderByDropDownOptions: IFilterOrderItem[] = [
     {
