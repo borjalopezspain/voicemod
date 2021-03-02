@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "backend": "json-server --watch server/db.json --port 8000",
     "start": "concurrently --kill-others --raw \"yarn serve\" \"yarn backend\""
@@ -22,25 +23,28 @@
     "vuex-module-decorators": "^1.0.1"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.19",
     "@types/lodash": "^4.14.168",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-plugin-unit-jest": "^4.5.11",
     "@vue/cli-service": "~4.5.0",
     "@vue/eslint-config-typescript": "^5.0.2",
+    "@vue/test-utils": "^1.0.3",
     "axios": "^0.21.1",
     "babel-eslint": "^10.1.0",
+    "concurrently": "^6.0.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "json-server": "^0.16.1",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
     "typescript": "~3.9.3",
-    "vue-template-compiler": "^2.6.11",
     "vue-click-outside": "^1.1.0",
-    "concurrently": "^6.0.0"
+    "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
     "root": true,
@@ -57,7 +61,18 @@
     },
     "rules": {
       "no-unused-vars": "off"
-    }
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
   },
   "browserslist": [
     "> 1%",
