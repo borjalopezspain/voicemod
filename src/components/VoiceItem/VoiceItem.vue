@@ -39,9 +39,9 @@ import { IVoiceItem, IManageFavouritesItem } from "@/models";
 
 @Component
 export default class VoiceItem extends Vue {
-  //STORE
   @Prop({ required: true, type: Object }) voiceData!: IVoiceItem;
 
+  //STORE
   @State((state) => state.Voices.selectedVoice)
   selectedVoice!: IVoiceItem;
 

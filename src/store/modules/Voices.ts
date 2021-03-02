@@ -26,12 +26,17 @@ export default class Voices extends VuexModule {
         this.context.commit(voiceMutationTypes.SET_VOICES_LIST, response.data);
 
         const groupedCategories = groupBy(response.data, "tags");
-        const categoryesList = map(
-          Object.keys(groupedCategories),
-          (key) => key
-        );
+        const categoryesList = map(Object.keys(groupedCategories), (key) => {
+          return {
+            label: key,
+            value: key,
+          };
+        });
 
-        categoryesList.unshift("all");
+        categoryesList.unshift({
+          label: "all",
+          value: "all",
+        });
 
         this.context.commit(voiceMutationTypes.SET_CATEGORIES, categoryesList);
       }

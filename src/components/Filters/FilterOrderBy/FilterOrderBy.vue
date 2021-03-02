@@ -3,34 +3,10 @@
     <div class="orderBy-list-container__order-icon">
       <img src="../../../assets/filterIcons/order.svg" alt="order icon" />
     </div>
-    <div
-      class="orderBy-list-container__drowdown-btn"
-      @click="showOrderByOptions = !showOrderByOptions"
-      v-click-outside="hideOptions"
-    >
-      {{ selectedOrder }}
-      <transition name="openDropdown">
-        <ul class="orderBy-list-container__drowdown" v-if="showOrderByOptions">
-          <li
-            v-for="option in orderByOptions"
-            :key="option.value"
-            class="orderBy-list-container__option"
-            @click="filterVoicesByOrder(option)"
-          >
-            {{ option.label }}
-          </li>
-        </ul>
-      </transition>
-      <span
-        class="orderBy-list-container__icon"
-        :class="showOrderByOptions ? 'orderBy-list-container__icon--open' : ''"
-      >
-        <img
-          src="../../../assets/filterIcons/select-arrow.svg"
-          alt="select arrow"
-        />
-      </span>
-    </div>
+    <dropdown-component
+      :drop-down-options="dropDownOptions"
+      @callFilter="callFilterVoicesByOrder"
+    />
   </div>
 </template>
 
@@ -38,11 +14,11 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Action } from "vuex-class";
 import { IFilterOrderItem } from "@/models";
-import ClickOutside from "vue-click-outside";
+import Dropdown from "@/components/Drowdown/Dropdown.vue";
 
 @Component({
-  directives: {
-    ClickOutside,
+  components: {
+    "dropdown-component": Dropdown,
   },
 })
 export default class FilterOrderBy extends Vue {
@@ -51,9 +27,7 @@ export default class FilterOrderBy extends Vue {
   private orderVoicesBySelectedOrder!: (selectedOrder: string) => void;
 
   //DATA
-  selectedOrder: string = "";
-  showOrderByOptions: boolean = false;
-  orderByOptions: IFilterOrderItem[] = [
+  dropDownOptions: IFilterOrderItem[] = [
     {
       label: "Ascendente",
       value: "asc",
@@ -65,13 +39,8 @@ export default class FilterOrderBy extends Vue {
   ];
 
   //METHODS
-  filterVoicesByOrder(selectedOrder: IFilterOrderItem): void {
-    this.selectedOrder = selectedOrder.label;
-    this.orderVoicesBySelectedOrder(selectedOrder.value);
-  }
-
-  hideOptions(): void {
-    this.showOrderByOptions = false;
+  callFilterVoicesByOrder(selectedOrder: string): void {
+    this.orderVoicesBySelectedOrder(selectedOrder);
   }
 }
 </script>
