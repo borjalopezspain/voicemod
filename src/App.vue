@@ -11,4 +11,4 @@ import { Component, Vue } from "vue-property-decorator";
 export default class App extends Vue {}
 </script>
 
-<style lang="scss" src="./main.scss" />
+<style lang="scss" src="./styles/main.scss" />

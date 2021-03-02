@@ -1,0 +1,58 @@
+@import "../../styles/variables";
+
+.voices-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.5rem;
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-content: space-between;
+  }
+}
+
+.voices-title-container {
+  display: flex;
+  margin-bottom: 2.5rem;
+  &__title {
+    color: var(--tertiary);
+    font-weight: bold;
+    font-size: 1.8rem;
+    display: inline;
+  }
+  &__separator {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    & .line {
+      height: 1px;
+      background: var(--line-separator);
+      flex: 1;
+    }
+  }
+}
+
+@media #{$tablet-landscape} {
+  .voices-container {
+    &__list {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+}
+
+@media #{$tablet} {
+  .voices-container {
+    &__list {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+@media #{$mobile} {
+  .voices-container {
+    &__list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
